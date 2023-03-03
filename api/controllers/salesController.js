@@ -16,7 +16,6 @@ function getMonth(month) {
   else if (month === "december") return "12";
   return month;
 }
-
 exports.getSalesData = (req, res, next) => {
   const month = req.params.month;
   SalesData.find({ monthOfSale: getMonth(month) })
@@ -37,7 +36,9 @@ exports.getSalesData = (req, res, next) => {
       });
     })
     .catch((err) => {
-      console.log(err);
+      res.status(500).json({
+        message: err,
+      });
     });
 };
 
@@ -60,23 +61,25 @@ exports.getBarChartData = (req, res, next) => {
 
       for (let x = 0; x < data.length; x++) {
         const price = data[x].price;
-        if(0<=price && price<=100) itemsInPriceRange['0-100']++;
-        else if(101<=price && price<=200) itemsInPriceRange['101-200']++;
-        else if(201<=price && price<=300) itemsInPriceRange['201-300']++;
-        else if(301<=price && price<=400) itemsInPriceRange['301-400']++;
-        else if(401<=price && price<=500) itemsInPriceRange['401-500']++;
-        else if(501<=price && price<=600) itemsInPriceRange['501-600']++;
-        else if(601<=price && price<=700) itemsInPriceRange['601-700']++;
-        else if(701<=price && price<=800) itemsInPriceRange['701-800']++;
-        else if(801<=price && price<=900) itemsInPriceRange['801-900']++;
-        else itemsInPriceRange['901-above']++;
+        if (0 <= price && price <= 100) itemsInPriceRange["0-100"]++;
+        else if (101 <= price && price <= 200) itemsInPriceRange["101-200"]++;
+        else if (201 <= price && price <= 300) itemsInPriceRange["201-300"]++;
+        else if (301 <= price && price <= 400) itemsInPriceRange["301-400"]++;
+        else if (401 <= price && price <= 500) itemsInPriceRange["401-500"]++;
+        else if (501 <= price && price <= 600) itemsInPriceRange["501-600"]++;
+        else if (601 <= price && price <= 700) itemsInPriceRange["601-700"]++;
+        else if (701 <= price && price <= 800) itemsInPriceRange["701-800"]++;
+        else if (801 <= price && price <= 900) itemsInPriceRange["801-900"]++;
+        else itemsInPriceRange["901-above"]++;
       }
       res.status(200).json({
         itemsInPriceRange: itemsInPriceRange,
       });
     })
     .catch((err) => {
-      console.log(err);
+      res.status(500).json({
+        message: err,
+      });
     });
 };
 
@@ -84,37 +87,22 @@ exports.getPieChartData = (req, res, next) => {
   const month = req.params.month;
   SalesData.find({ monthOfSale: getMonth(month) })
     .then((data) => {
-      let itemsInPriceRange = {
-        "0-100": 0,
-        "101-200": 0,
-        "201-300": 0,
-        "301-400": 0,
-        "401-500": 0,
-        "501-600": 0,
-        "601-700": 0,
-        "701-800": 0,
-        "801-900": 0,
-        "901-above": 0,
-      };
-
+      let categories = {};
       for (let x = 0; x < data.length; x++) {
-        const price = data[x].price;
-        if(0<=price && price<=100) itemsInPriceRange['0-100']++;
-        else if(101<=price && price<=200) itemsInPriceRange['101-200']++;
-        else if(201<=price && price<=300) itemsInPriceRange['201-300']++;
-        else if(301<=price && price<=400) itemsInPriceRange['301-400']++;
-        else if(401<=price && price<=500) itemsInPriceRange['401-500']++;
-        else if(501<=price && price<=600) itemsInPriceRange['501-600']++;
-        else if(601<=price && price<=700) itemsInPriceRange['601-700']++;
-        else if(701<=price && price<=800) itemsInPriceRange['701-800']++;
-        else if(801<=price && price<=900) itemsInPriceRange['801-900']++;
-        else itemsInPriceRange['901-above']++;
+        const category = data[x].category;
+        if (categories.hasOwnProperty(category)) {
+          categories[category]++;
+        } else {
+          categories[category] = 1;
+        }
       }
       res.status(200).json({
-        itemsInPriceRange: itemsInPriceRange,
+        categories: categories,
       });
     })
     .catch((err) => {
-      console.log(err);
+      res.status(500).json({
+        message: err,
+      });
     });
 };

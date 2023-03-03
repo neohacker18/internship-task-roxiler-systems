@@ -10,7 +10,7 @@ const MONGODB_URI = process.env.MONGODB_URI;
 const adminRoute = require("./api/routes/admin");
 const salesRoute = require("./api/routes/sales");
 
-// app.use("/admin", adminRoute);
+app.use("/admin", adminRoute);
 app.use("/sales", salesRoute);
 app.use(morgan("dev"));
 

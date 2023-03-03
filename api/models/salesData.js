@@ -17,6 +17,10 @@ const salesSchema = new Schema({
     type: String,
     required: true,
   },
+  category: {
+    type: String,
+    required: true,
+  },
   sold: {
     type: Boolean,
     required: true,
