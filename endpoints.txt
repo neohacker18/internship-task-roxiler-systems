@@ -1,9 +1,27 @@
 API for statistics
 
 /getSalesData/:month
--> accepted format of month = [january, february... , december] or [01,02,03 ...., 12]
+-> accepted format of month = [january, february... , december (uppercase or lowercase)] or [01,02,03 ...., 12]
 -> retrieves data and sends 3 types of response
  => Sale amount of that month, Sold items of that month and Not sold items of that month
 
 
+API for bar chart
+
+
+/getBarChartData/:month
+-> accepted format of month = [january, february... , december (uppercase or lowercase)] or [01,02,03 ...., 12]
+-> retrieves data and sends one response
+ => An object containing the price ranges 
+    - 0 - 100
+    - 101 - 200
+    - 201-300
+    - 301-400
+    - 401-500
+    - 501 - 600
+    - 601-700
+    - 701-800
+    - 801-900
+    - 901-above
+ and the count of the sales that fall under each range
 
