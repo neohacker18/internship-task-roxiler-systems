@@ -1,0 +1,9 @@
+API for statistics
+
+/getSalesData/:month
+-> accepted format of month = [january, february... , december] or [01,02,03 ...., 12]
+-> retrieves data and sends 3 types of response
+ => Sale amount of that month, Sold items of that month and Not sold items of that month
+
+
+
