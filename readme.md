@@ -3,10 +3,10 @@
 
 <ul>
    <li>
-accepted format of month = [january, february... , december (uppercase or lowercase)] or [01,02,03 ...., 12]   
+Accepted format of month = [january, february... , december (uppercase or lowercase)] or [01,02,03 ...., 12]   
    </li>
    <li>
-retrieves data and sends 3 types of response
+Retrieves data and sends 3 types of response
  => data from the statistics api, bar chart api, pie chart api
    
    </li>
@@ -18,10 +18,10 @@ retrieves data and sends 3 types of response
 
 <ul>
    <li>
-accepted format of month = [january, february... , december (uppercase or lowercase)] or [01,02,03 ...., 12]   
+Accepted format of month = [january, february... , december (uppercase or lowercase)] or [01,02,03 ...., 12]   
    </li>
    <li>
-retrieves data and sends 3 types of response
+Retrieves data and sends 3 types of response
 => Sale amount of that month, Sold items of that month and Not sold items of that month
    </li>
 </ul>
@@ -31,10 +31,10 @@ retrieves data and sends 3 types of response
 <h5>/sales/getBarChartData/:month</h5>
 <ul>
    <li>
-   accepted format of month = [january, february... , december (uppercase or lowercase)] or [01,02,03 ...., 12]
+   Accepted format of month = [january, february... , december (uppercase or lowercase)] or [01,02,03 ...., 12]
    </li>
    <li>
-retrieves data and sends one response
+Retrieves data and sends one response
  => An object containing the price ranges 
     - 0 - 100
     - 101 - 200
@@ -55,8 +55,17 @@ retrieves data and sends one response
 
 <h5>/sales/getPieChartData/:month</h5>
 <ul>
-   <li>accepted format of month = [january, february... , december (uppercase or lowercase)] or [01,02,03 ...., 12]</li>
-   <li>retrieves data and sends one response
+   <li>Accepted format of month = [january, february... , december (uppercase or lowercase)] or [01,02,03 ...., 12]</li>
+   <li>Retrieves data and sends one response
    => An object containing the categories of the sales
    and the count of the sales that fall under each category</li>
+</ul>
+
+
+<h1>API to seed data into database</h1>
+
+<h5>/admin/getData</h5>
+<ul>
+   <li>Retrieves data from given public api</li>
+   <li>Populates the collection on mongodb server</li>
 </ul>
